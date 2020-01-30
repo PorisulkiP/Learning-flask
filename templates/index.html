@@ -1,0 +1,47 @@
+<h1>New Programming Times</h1>
+
+
+<form method = "POST">
+    <p>Login</p>
+    <input 
+        placeholder="5-20 symbols"
+        minlength="5"
+        maxlength="20"
+        name ="name"
+        required
+    >
+    <p>E-Mail</p>
+    <input 
+        placeholder="Enter your email"
+        type ="email"
+        name ="email"
+        required
+    >
+    <p>Password</p>
+    <input 
+        type="password"
+        placeholder="8+ symbols"
+        minlength="8"
+        name ="pass"
+        required
+    >
+    <p>Confirm Password</p>
+    <input 
+        type="password"
+        placeholder="Confirm your password"
+        minlength="8"
+        name ="pass_check"
+        required
+    >
+    <br>
+    <br>
+    <input type="submit">
+</form>
+
+{% if error == 'passwords_not_match' %}
+<p>Sorry, seems your passwords not match</p>
+
+{% elif error == 'already_exists' %}
+<p>Sorry, seems your account already exists :-)</p>
+
+{% endif %}
