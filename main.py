@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 app.secret_key = 'LedyGAGA12985'
 
+{{ url_for("css", filename="styles.css") }}
+
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
