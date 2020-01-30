@@ -1,4 +1,5 @@
 <h1>New Programming Times</h1>
+<link href="{{url_for('static', filename = 'style.css')}}" rel="stylesheet">
 
 
 <form method = "POST">
@@ -43,5 +44,7 @@
 
 {% elif error == 'already_exists' %}
 <p>Sorry, seems your account already exists :-)</p>
+
+
 
 {% endif %}
