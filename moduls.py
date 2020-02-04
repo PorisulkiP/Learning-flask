@@ -64,6 +64,23 @@ def check_user(email, password):
     return user
 
 
+def add_task(tatle, details, deadline_date):
+    engine = create_engine('sqlite:///app.bd', echo = True)
+    db_session = Session(bind = engine)
+    user_task = db_session.query(User).filter_by(name=user).first().task
+    deadline_date = datetime.date.fromisoformat(deadline_date)
+
+    db_session.commit()
+    db_session.close()
+
+def get_user_task():
+    engine = create_engine('sqlite:///app.bd', echo = True)
+    db_session = Session(bind = engine)
+    db_user = db_session.query(User).filter_by(name=name).first().task
+    user_task = db_user.task
+    db_session.commit()
+    db_session.close()
+    return db_user.task    
 
 
 

@@ -1,10 +1,37 @@
 {% if username != session['username'] %}
 <p>Sorry, seems like somethink goes wrong. Return to Sign In and try again</p>
 <a href = {{ url_for('index') }}> To Sign In</a>
+{% elif error %}
+<p>Sorry, seems like Acaunt wasn't found. Return to Sign In and try again</p>
 {% else %}
+<a href = {{ url_for('logout') }}>LogOut</a>
 <h2>Hello, {{ username|title }}!</h2>
+
+<ol>
+    {% for tisk in tasks %}
+
+    {% nedfor %}
+
+</ol>
+
+<form method="POST">
+
+    <p>Title</p>
+    <input
+        type="text"
+        name="time"
+        maxlength="20"
+        minlength="3"
+        required
+    >
+    <p>Password</p>
+    <input
+        type="password"
+        placeholder="8+"
+        minlength="8"
+        name="password"
+        required
+    > 
+</form>
+
 {% endif %}
-
-
-
-

@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from moduls import add_user, check_user
+from moduls import add_user, check_user, add_task, Task, get_user_task
 from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 
-app.secret_key = 'LedyGAGA12985'
+app.secret_key = 'LedyGagA'
+
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
@@ -25,6 +26,12 @@ def index():
 
 @app.route('/user/<name>')
 def user_page(name):
+    if request.method == 'POST':
+        title = request.form['title']
+        details = request.form['details']
+        deadline_date = request.form['deadline_date']
+        add_task(session['username'], title, details, deadline_date)
+    user_task = get_user_task(name)
     return render_template('users.html', username = name.title())
 
 @app.route('/login')
@@ -40,5 +47,9 @@ def login():
             return render_template('login.html', error = True)
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 app.run(debug = True)
