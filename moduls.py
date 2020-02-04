@@ -74,14 +74,12 @@ def add_task(tatle, details, deadline_date):
     db_session.close()
 
 def get_user_task():
-    engine = create_engine('sqlite:///app.bd', echo = True)
-    db_session = Session(bind = engine)
-    db_user = db_session.query(User).filter_by(name=name).first().task
-    user_task = db_user.task
-    db_session.commit()
+    engine = create_engine('sqlite:///app.db', echo=True)
+    db_session = Session(bind=engine)
+    db_user = db_session.query(User).filter_by(name=name).first()
+    user_tasks = db_user.tasks
     db_session.close()
-    return db_user.task    
-
+    return db_user.tasks  
 
 
 

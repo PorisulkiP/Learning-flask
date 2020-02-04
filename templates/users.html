@@ -4,14 +4,14 @@
 {% elif error %}
 <p>Sorry, seems like Acaunt wasn't found. Return to Sign In and try again</p>
 {% else %}
+
 <a href = {{ url_for('logout') }}>LogOut</a>
 <h2>Hello, {{ username|title }}!</h2>
 
 <ol>
-    {% for tisk in tasks %}
-
-    {% nedfor %}
-
+    {% for task in tasks %}
+    <li>{{task.title}} <a href="/remove/task">Remove</a> </li>
+    {% endfor %}
 </ol>
 
 <form method="POST">
