@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from moduls import add_user, check_user, add_task, Task, get_user_task
+from flask import (Flask, render_template, request, 
+                   redirect, url_for, session, flash)
+from moduls import add_user, check_user, add_task, Task, get_user_task, delete_task, change_task
 from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
@@ -32,9 +33,9 @@ def user_page(name):
         deadline_date = request.form['deadline_date']
         add_task(session['username'], title, details, deadline_date)
     user_task = get_user_task(name)
-    return render_template('users.html', username = name.title())
+    return render_template('users.html', username = name.title(), tasks=user_task)
 
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -51,5 +52,17 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
+
+@app.route('/remove/<task_id>')
+def delete_tasks(task_id):
+    delete_task(session['username'],task_id)
+    flash(f'{task_id} was deleted')
+    return redirect(url_for('user_page', name = session['username']))
+
+@app.route('/remove/task_<task_id>')
+def change_tasks(task_id):
+    change_task(session['username'],task_id)
+    flash(f'{task_id} was changed')
+    return redirect(url_for('user_page', name = session['username']))
 
 app.run(debug = True)
