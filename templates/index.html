@@ -1,48 +1,56 @@
-<h1>New Programming Times</h1>
-<link href="{{url_for('static', filename = 'style.css')}}" rel="stylesheet">
+<head>
+    <link rel="stylesheet" 
+    href={{ url_for('static', filename='style.css')}}
+    >
+</head>
 
 
-<form method = "POST">
-    <p>Login</p>
+
+
+<h1>New Program Times</h1>
+
+<form method="POST">
+    <p>Name</p>
     <input 
-        placeholder="5-20 symbols"
-        minlength="5"
+        placeholder="5-20 symbols" 
+        minlength="5" 
         maxlength="20"
-        name ="name"
+        name="name"
         required
     >
-    <p>E-Mail</p>
+    <p>Email</p>
     <input 
-        placeholder="Enter your email"
-        type ="email"
-        name ="email"
+        placeholder="enter a valid email"
+        type="email"
+        name="email"
         required
     >
     <p>Password</p>
     <input 
-        type="password"
-        placeholder="8+ symbols"
-        minlength="8"
-        name ="pass"
+        type="password" 
+        placeholder="6+" 
+        minlength="6"
+        name="password"
         required
     >
-    <p>Confirm Password</p>
+    <p>Password</p>
     <input 
-        type="password"
-        placeholder="Confirm your password"
-        minlength="8"
-        name ="pass_check"
+        type="password" 
+        placeholder="repeat your password"
+        minlength="6"
+        name="password_check"
         required
     >
     <br>
     <br>
     <input type="submit">
+    <a href={{ url_for('login') }}>Already have account</a>
 </form>
-<a href = {{ url_for('login') }}>Already have account</a>
+
+
 
 {% if error == 'passwords_not_match' %}
-<p>Sorry, seems your passwords not match</p>
-
+<p>Sorry, seems like passwords doesn't match</p>
 {% elif error == 'already_exists' %}
-<p>Sorry, seems your account already exists :-)</p>
+<p>Sorry, seems like this account already exists</p>
 {% endif %}
