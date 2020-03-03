@@ -7,12 +7,11 @@ from models import (add_user, check_user, add_task, get_user_tasks,
 
 
 app = Flask(__name__)
-app.secret_key = 'LALALALGAGAGAAG'
+app.secret_key = 'themostsecretkeyinthealluniversecreatedbymeonthelessonwithpks22'
 
 @app.errorhandler(404)
 def error_404(error):
     return render_template('404.html')
-
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -74,4 +73,4 @@ def change_tasks(task_id):
     flash(f"Status of {task_id} was changed")
     return redirect(url_for('user_page', name=session['username']))
 
-app.run(debug=True) #app.run('0.0.0.0','3000')
+app.run(debug=True)

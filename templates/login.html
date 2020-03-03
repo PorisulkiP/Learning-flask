@@ -1,34 +1,33 @@
 <head>
-    <link rel="stylesheet" 
-    href={{ url_for('static', filename='style.css')}}
-    >
+	<link rel="stylesheet" 
+	href={{ url_for('static', filename='style.css')}}
+	>
 </head>
 
 
-
-
-
-{% if error %}
-<p>Account have not found. Try again / Return to Sign Up</p>
-<a href={{ url_for('index') }}>To Sign Up</a>
-{% endif %}
-
 <form method="POST">
-    
-    <p>Email</p>
-    <input 
-        type="email"
-        name="email"
-        required
-    >
-    <p>Password</p>
-    <input 
-        type="password" 
-        minlength="6"
-        name="password"
-        required
-    >
-    <br>
-    <br>
-    <input type="submit">
+	
+	<p>Email</p>
+	<input 
+		type="email"
+		name="email"
+		required
+	>
+	<p>Password</p>
+	<input 
+		type="password" 
+		minlength="6"
+		name="password"
+		required
+	>
+	<br>
+	<br>
+	<input type="submit">
 </form>
+<div>
+	{% if error %}
+	<p>Account have not found. Try again / Return to Sign Up</p>    
+	<a href={{ url_for('index') }}>To Sign Up</a>
+	{% endif %}
+</div>
+
