@@ -52,7 +52,7 @@ def login():
             session['username'] = user.name
             return redirect(url_for('user_page', name=user.name))
         else:
-            return render_template('login.html', error=True) # начать с добавления в юзер.хтмл
+            return render_template('login.html', error=True) 
     return render_template('login.html')
 
 @app.route('/logout')
